@@ -9,6 +9,7 @@ import org.springframework.web.client.RestTemplate;
 public class Application {
 
     public static void main(String[] args) {
+        System.out.println("starting spring");
         SpringApplication.run(Application.class, args);
     }
 
