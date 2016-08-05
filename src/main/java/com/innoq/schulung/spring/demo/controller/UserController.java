@@ -32,7 +32,7 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String index(Model model) {
-        List<User> userList = restTemplate.getForObject("http://localhost:9090/rest/", List.class);
+        List<User> userList = userBusinessService.findAll();
         List<User> deactivatedUsers = userBusinessService.findByStatus("deactivated");
         List<User> verifiedUsers = userBusinessService.findByStatus("verified");
         model.addAttribute("verifiedUsers", verifiedUsers);
