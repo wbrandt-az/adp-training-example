@@ -18,6 +18,9 @@ import java.util.List;
 @Controller
 @RequestMapping(path = "/user")
 public class UserController {
+
+    private final Logger log = LoggerFactory.getLogger(UserController.class);
+
     private UserBusinessService userBusinessService;
 
     private RestTemplate restTemplate;
@@ -32,6 +35,7 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String index(Model model) {
+        log.info("index called");
         List<User> userList = userBusinessService.findAll();
         List<User> deactivatedUsers = userBusinessService.findByStatus("deactivated");
         List<User> verifiedUsers = userBusinessService.findByStatus("verified");
@@ -44,18 +48,21 @@ public class UserController {
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String createUser(@ModelAttribute User user, Model model) {
+        log.info("user created");
         userBusinessService.saveUser(user);
         return "redirect:/user";
     }
 
     @RequestMapping(value = "/verify", method = RequestMethod.POST)
     public String verify(@ModelAttribute User user, Model model) {
+        log.info("user verified");
         userBusinessService.changeUserStatus(user.getId(), "verified");
         return "redirect:/user";
     }
 
     @RequestMapping(value = "/deactivate", method = RequestMethod.POST)
     public String deactivate(@ModelAttribute User user, Model model) {
+        log.info("user deactivated");
         userBusinessService.changeUserStatus(user.getId(), "deactivated");
         return "redirect:/user";
     }

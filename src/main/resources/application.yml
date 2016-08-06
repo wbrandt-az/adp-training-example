@@ -1,2 +1,8 @@
 server:
   port: 9090
+
+logging:
+  level:
+    com.innoq: INFO
+    org.hibernate: ERROR
+    org.springframework: ERROR
