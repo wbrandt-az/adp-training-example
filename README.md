@@ -7,3 +7,5 @@ Wird verwendet für Dev Ops Training
 - Example project for CloudFoundry
 
 Demo für Git merge und push
+
+I will do a push - wb 11
